@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
 
 	private string playerName { get; set; }
     private List<Position> positionHistory;
+    private Color playerColor { get; set; }
 
     public List<Position> getPositionHistory()
     {
