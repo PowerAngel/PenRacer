@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour {
-
-    private bool isTrack { get; set; }
-    private Sprite sprite { get; set; }
+public enum Tile {
+    Unset,
+    Track,
+    Grass
 }
