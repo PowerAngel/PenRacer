@@ -11,6 +11,7 @@ public class TileEngine : MonoBehaviour {
     public GameObject TilePrefab;
     public Vector2 CurrentPosition;
     public Vector2 ViewPortSize;
+    public Sprite grassSprite;
 
     private TileSprite[,] _map;
     private GameObject controller;
@@ -108,17 +109,32 @@ public class TileEngine : MonoBehaviour {
         }
     }
 
-	// Use this for initialization
-	void Start () {
+    private void checkMouseClick()
+    {
+        if(Input.GetMouseButtonDown(0))
+        {
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Debug.Log("mousePosition: "+ mousePosition);
+
+            _map[(int)mousePosition.x, (int)mousePosition.y].TileType = Tile.Grass;
+            _map[(int)mousePosition.x, (int)mousePosition.y].TileImage = grassSprite;
+
+            Debug.Log("Tiletype: " + _map[(int)mousePosition.x, (int)mousePosition.y].TileType);
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
         controller = GameObject.Find("Controller");
         _map = new TileSprite[(int)MapSize.x, (int)MapSize.y];
-
         DefaultTiles();
         SetTiles();
+        AddTilesToWorld();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        AddTilesToWorld();
+        //AddTilesToWorld();
+        checkMouseClick();
 	}
 }
